@@ -89,15 +89,9 @@ kp2 = kp2[filtcond].reshape(-1, 2)
 draw_flow(img1, kp1, kp2)
 
 # Find the essential matrix# 
-#F, mask = cv2.findFundamentalMat(kp1, kp2, cv2.FM_RANSAC)
 E, mask = cv2.findEssentialMat(kp1, kp2, K, cv2.RANSAC, threshold = 0.5)
 kp1 = kp1[mask.ravel() == 1]
 kp2 = kp2[mask.ravel() == 1]
-# F, mask = cv2.findFundamentalMat(kp1, kp2, cv2.FM_8POINT)
-# kp1 = kp1[mask.ravel() == 1]
-# kp2 = kp2[mask.ravel() == 1]
-
-#E = np.dot(np.transpose(K), np.dot(F, K))
 draw_flow(img1, kp1, kp2)
 
 # take svd

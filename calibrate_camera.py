@@ -16,7 +16,7 @@ def calibrate_camera():
     workdir = os.getcwd()
     
     # Directory in which the chessboard photos are stored
-    os.chdir("/home/benhc/Documents/IIB/Project/Images/iphone calibration photos")
+    os.chdir("/calibrationphotos")
 
     # Size of the chessboard in the photos. 
     grid = (7, 8)

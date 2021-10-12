@@ -1,3 +1,4 @@
 *.pyc
 camera_data.p
 drawcube.py
+.idea

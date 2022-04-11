@@ -3,7 +3,7 @@ import numpy as np
 from typing import Iterator
 
 
-class IImageGenerator(ABC):
+class ImageGeneratorABC(ABC):
     """
     Defines the interface for a class which provides a stream of images.
     """
@@ -12,6 +12,6 @@ class IImageGenerator(ABC):
     def image_stream(self) -> Iterator[np.ndarray]:
         """
         Gets the image stream.
-        :return: A generator of images in the form of an array of pixel values.
+        :return: An iterator of images in the form of an array of pixel values.
         """
         pass

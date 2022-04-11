@@ -15,9 +15,12 @@ class PointConstructor:
             image_1_feature_coordinates,
             image_2_feature_coordinates,
         ) = self._get_projection_matrix(image_1_feature_coordinates, image_2_feature_coordinates, camera_matrix)
-        return cv2.triangulatePoints(
+        homogenous_world_coordinates = cv2.triangulatePoints(
             projection_matrix_1, projection_matrix_2, image_1_feature_coordinates.T, image_2_feature_coordinates.T
-        )
+        ).T
+
+        points = cv2.convertPointsFromHomogeneous(homogenous_world_coordinates)
+        return [p[0] for p in points]
 
     def _get_projection_matrix(self, image1_key_points, image2_key_points, camera_matrix):
         essential_matrix, image1_key_points, image2_key_points = self._estimate_essential_matrix(
@@ -96,3 +99,7 @@ class PointConstructor:
         in_front_of_camera_2 = [True if p[2] > 0 else False for p in camera_2_coordinates]
 
         return sum([a and b for a, b in zip(in_front_of_camera_1, in_front_of_camera_2)])
+
+    @staticmethod
+    def _convert_from_homogeneous(points):
+        return points

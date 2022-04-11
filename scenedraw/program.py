@@ -24,7 +24,7 @@ class Program:
         rectifier = Rectifier(camera_matrix, distortion_coefficients)
         image_generator = FileImageGenerator(image_files)
         feature_matcher = FastOpticalFlowFeatureMatcher(error_threshold=10.0)
-        point_constructor = PointConstructor(threshold=0.5)
+        point_constructor = PointConstructor(threshold=1)
 
         image_1 = None
         for image in image_generator.image_stream:
@@ -37,11 +37,11 @@ class Program:
 
             kp1, kp2 = feature_matcher.get_matched_features(image_1, image_2)
 
-            # DisplayUtility.display_feature_matches(image_1, kp1, kp2)
+            DisplayUtility.display_feature_matches(image_1, kp1, kp2)
 
             world_image_points = point_constructor.get_world_image_points(kp1, kp2, camera_matrix)
 
             print(world_image_points)
 
-            DisplayUtility.plot_coordinates(world_image_points.T)
+            DisplayUtility.plot_coordinates(world_image_points)
             image_1 = image_2

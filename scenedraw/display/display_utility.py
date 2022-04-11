@@ -37,12 +37,12 @@ class DisplayUtility:
         fig = plt.figure()
         ax = fig.add_subplot(111, projection="3d")
         ax.scatter(
-            coordinates[:, 0],
-            coordinates[:, 1],
-            coordinates[:, 2],
+            [c[0] for c in coordinates],
+            [c[1] for c in coordinates],
+            [c[2] for c in coordinates],
             marker="o",
             edgecolors="none",
-            c=coordinates[:, 2],
+            c=[c[2] for c in coordinates],
             cmap="plasma",
         )
         plt.show()

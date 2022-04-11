@@ -1,10 +1,10 @@
-from scenedraw.image_generation import IImageGenerator
+from scenedraw.image_generation import ImageGeneratorABC
 from typing import List, Iterator
 import numpy as np
 import cv2
 
 
-class FileImageGenerator(IImageGenerator):
+class FileImageGenerator(ImageGeneratorABC):
     """
     An image generator that yields the contents of supplied image files.
     """
